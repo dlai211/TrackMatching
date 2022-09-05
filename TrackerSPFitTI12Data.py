@@ -59,7 +59,7 @@ if __name__ == "__main__":
   ConfigFlags.Input.ProjectName = "data21"                     # Needed to bypass autoconfig
   ConfigFlags.Input.isMC = False
   # Needed to bypass autoconfig
-  ConfigFlags.GeoModel.FaserVersion     = "FASERNU-02"           # FASER cosmic ray geometry (station 2 only)
+  ConfigFlags.GeoModel.FaserVersion     = "FASERNU-03"           # FASER cosmic ray geometry (station 2 only)
 #  ConfigFlags.Detector.GeometryFaserSCT = True
   ConfigFlags.Common.isOnline = False
   ConfigFlags.GeoModel.Align.Dynamic = False
