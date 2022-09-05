@@ -57,7 +57,7 @@ if __name__ == "__main__":
   ConfigFlags.IOVDb.GlobalTag = "OFLCOND-FASER-02"             # Always needed; must match FaserVersion
   ConfigFlags.IOVDb.DatabaseInstance = "OFLP200"               # Use MC conditions for now
   ConfigFlags.Input.ProjectName = "data21"                     # Needed to bypass autoconfig
-  ConfigFlags.Input.isMC = False
+  ConfigFlags.Input.isMC = True
   # Needed to bypass autoconfig
   ConfigFlags.GeoModel.FaserVersion     = "FASERNU-03"           # FASER cosmic ray geometry (station 2 only)
 #  ConfigFlags.Detector.GeometryFaserSCT = True
