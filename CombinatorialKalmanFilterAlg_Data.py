@@ -21,7 +21,7 @@ ConfigFlags.addFlag("Output.xAODFileName", f"CKF.xAOD.root")
 ConfigFlags.IOVDb.GlobalTag = "OFLCOND-FASER-02"
 ConfigFlags.IOVDb.DatabaseInstance = "OFLP200"
 ConfigFlags.Input.ProjectName = "data21"
-ConfigFlags.Input.isMC = False
+ConfigFlags.Input.isMC = True
 ConfigFlags.GeoModel.FaserVersion = "FASER-03"
 ConfigFlags.Common.isOnline = False
 ConfigFlags.GeoModel.Align.Dynamic = False
