@@ -129,7 +129,9 @@ StatusCode NtupleMakerAlg::execute(const EventContext &ctx) const
       {
 	if (particle->status() == 1 && (particle->nParents() == 0 || particle->nParents() == 2) )
 	  m_truthLeptonMomentum = particle->p4().P();
-
+	  m_truthLeptonPx = particle->px().P();
+	  m_truthLeptonPy = particle->py().P();
+	  m_truthLeptonPz = particle->pz().P();
 	break;
       }
     }
