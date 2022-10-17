@@ -90,6 +90,9 @@ StatusCode NtupleMakerAlg::initialize()
   m_tree->Branch("goodStations", &m_ngoodsta, "ngoodsta/I");
   m_tree->Branch("longTracks", &m_longTracks, "longTracks/I");
   m_tree->Branch("pTruthLepton", &m_truthLeptonMomentum, "pTruthLepton/D");
+  m_tree->Branch("pxTruthLepton", &m_truthLeptonPx, "pxTruthLepton/D"); 
+  m_tree->Branch("pyTruthLepton", &m_truthLeptonPy, "pyTruthLepton/D");
+  m_tree->Branch("pzTruthLepton", &m_truthLeptonPz, "pzTruthLepton/D");
   m_tree->Branch("truthBarcode", &m_truthBarcode, "truthBarcode/I");
   m_tree->Branch("truthPdg", &m_truthPdg, "truthPdg/I");
   m_tree->Branch("ntruthmatchedclus_layer", &m_ntruthmatchedclus_layer);
@@ -514,6 +517,9 @@ NtupleMakerAlg::clearTree() const
   m_ntruthmatchedclus3.clear();
   m_longTracks = 0;
   m_truthLeptonMomentum = 0;
+  m_truthLeptonPx = 0;
+  m_truthLeptonPy = 0;
+  m_truthLeptonPz = 0;
   m_truthBarcode = 0;
   m_truthPdg = 0;
   m_ntruthmatchedclus_layer.clear();
