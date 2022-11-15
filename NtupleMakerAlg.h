@@ -108,6 +108,10 @@ private:
   mutable std::vector<int>    m_ntruthmatchedclus3;
   mutable int    m_longTracks;
   mutable double m_truthLeptonMomentum;
+  mutable double m_truthLeptonPx;
+  mutable double m_truthLeptonPy;
+  mutable double m_truthLeptonPz;
+  mutable double m_truthLeptonx;
   mutable int    m_truthBarcode;
   mutable int    m_truthPdg;
   mutable std::vector<int>    m_ntruthmatchedclus_layer;
