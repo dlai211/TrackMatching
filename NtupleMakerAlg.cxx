@@ -93,6 +93,7 @@ StatusCode NtupleMakerAlg::initialize()
   m_tree->Branch("pxTruthLepton", &m_truthLeptonPx, "pxTruthLepton/D"); 
   m_tree->Branch("pyTruthLepton", &m_truthLeptonPy, "pyTruthLepton/D");
   m_tree->Branch("pzTruthLepton", &m_truthLeptonPz, "pzTruthLepton/D");
+  m_tree->Branch("xTruthLepton", &m_truthLeptonx, "xTruthLepton/D");
   m_tree->Branch("truthBarcode", &m_truthBarcode, "truthBarcode/I");
   m_tree->Branch("truthPdg", &m_truthPdg, "truthPdg/I");
   m_tree->Branch("ntruthmatchedclus_layer", &m_ntruthmatchedclus_layer);
@@ -128,15 +129,14 @@ StatusCode NtupleMakerAlg::execute(const EventContext &ctx) const
   {
     for (auto particle : *truthParticleContainer)
     {
-      if ( particle->absPdgId() == 11 || particle->absPdgId() == 13 || particle->absPdgId() == 15 )
-      {
+//if ( particle->absPdgId() == 11 || particle->absPdgId() == 13 || particle->absPdgId() == 15 )
 	if (particle->status() == 1 && (particle->nParents() == 0 || particle->nParents() == 2) )
 	  m_truthLeptonMomentum = particle->p4().P();
 	  m_truthLeptonPx = particle->px().P();
 	  m_truthLeptonPy = particle->py().P();
 	  m_truthLeptonPz = particle->pz().P();
+	  m_truthLeptonx = particle->position().x();
 	break;
-      }
     }
   }
 
@@ -520,6 +520,7 @@ NtupleMakerAlg::clearTree() const
   m_truthLeptonPx = 0;
   m_truthLeptonPy = 0;
   m_truthLeptonPz = 0;
+  m_truthLeptonx = 0;
   m_truthBarcode = 0;
   m_truthPdg = 0;
   m_ntruthmatchedclus_layer.clear();
