@@ -28,12 +28,12 @@ StatusCode RDOReadAlg::initialize()
     m_SCTHit_tree->Branch("m_x_end",&m_x_end,"m_x_end/F");
     m_SCTHit_tree->Branch("m_y_end",&m_y_end,"m_y_end/F");
     m_SCTHit_tree->Branch("m_z_end",&m_z_end,"m_z_end/F");
-    m_SCTHit_tree->Branch("m_station",&m_station,"m_station/F");
-    m_SCTHit_tree->Branch("m_plane",&m_plane,"m_plane/F");
-    m_SCTHit_tree->Branch("m_row",&m_row,"m_row/F");
-    m_SCTHit_tree->Branch("m_getModule",&m_getModule,"m_getModule/F");
-    m_SCTHit_tree->Branch("m_sensor",&m_sensor,"m_sensor/F");
-    m_SCTHit_tree->Branch("m_trackNumber",&m_trackNumber,"m_trackNumber/F");
+    //m_SCTHit_tree->Branch("m_station",&m_station,"m_station/F");
+    //m_SCTHit_tree->Branch("m_plane",&m_plane,"m_plane/F");
+    //m_SCTHit_tree->Branch("m_row",&m_row,"m_row/F");
+    //m_SCTHit_tree->Branch("m_getModule",&m_getModule,"m_getModule/F");
+    //m_SCTHit_tree->Branch("m_sensor",&m_sensor,"m_sensor/F");
+    //m_SCTHit_tree->Branch("m_trackNumber",&m_trackNumber,"m_trackNumber/F");
 
     // initialize data handle keys
     ATH_CHECK( m_mcEventKey.initialize() );
@@ -143,12 +143,12 @@ StatusCode RDOReadAlg::execute()
                     m_y_end = hit.localEndPosition().y();
                     m_z_end = hit.localEndPosition().z();
                     
-                    m_station = hit.getStation();
-                    m_plane = hit.getPlane();
-                    m_row = hit.getRow();
-                    m_getModule = hit.getModule();
-                    m_sensor = hit.getSensor();
-                    m_trackNumber = hit.trackNumber();
+                    //m_station = hit.getStation();
+                    //m_plane = hit.getPlane();
+                    //m_row = hit.getRow();
+                    //m_getModule = hit.getModule();
+                    //m_sensor = hit.getSensor();
+                    //m_trackNumber = hit.trackNumber();
                         
                     m_SCTHit_tree->Fill();
 
