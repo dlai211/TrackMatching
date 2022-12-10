@@ -37,6 +37,7 @@ class RDOReadAlg : public AthHistogramAlgorithm
     
     float m_station;
     float m_plane;
+    float m_row;
     float m_getModule;
     float m_sensor;
     float m_trackNumber;
