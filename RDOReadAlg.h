@@ -26,9 +26,20 @@ class RDOReadAlg : public AthHistogramAlgorithm
     TProfile* m_hprof;
     
     TTree* m_SCTHit_tree;
-    float m_x;
-    float m_y;
-    float m_z;
+    
+    float m_x_start;
+    float m_y_start;
+    float m_z_start;
+
+    float m_x_end;
+    float m_y_end;
+    float m_z_end;
+    
+    float m_station;
+    float m_plane;
+    float m_getModule;
+    float m_sensor;
+    float m_trackNumber;
 
 
     // Read handle keys for data containers
