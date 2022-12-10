@@ -24,6 +24,12 @@ class RDOReadAlg : public AthHistogramAlgorithm
     TH1* m_hist;  // Example histogram
     TH1* m_incAnglHist;
     TProfile* m_hprof;
+    
+    TTree* m_SCTHit_tree;
+    float m_x;
+    float m_y;
+    float m_z;
+
 
     // Read handle keys for data containers
     // Any other event data can be accessed identically
