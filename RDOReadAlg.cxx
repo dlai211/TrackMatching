@@ -19,6 +19,19 @@ StatusCode RDOReadAlg::initialize()
     ATH_CHECK(histSvc()->regHist("/HIST/myhist", m_hist));
     ATH_CHECK(histSvc()->regHist("/HIST/myhistprof", m_hprof));
     ATH_CHECK(histSvc()->regHist("/HIST/myhistAngl", m_incAnglHist));
+    
+    // TTree
+    m_SCTHit_tree->Branch("m_x_start",&m_x_start,"m_x_start/F");
+    m_SCTHit_tree->Branch("m_y_start",&m_y_start,"m_y_start/F");
+    m_SCTHit_tree->Branch("m_z_start",&m_z_start,"m_z_start/F");
+    m_SCTHit_tree->Branch("m_x_end",&m_x_end,"m_x_end/F");
+    m_SCTHit_tree->Branch("m_y_end",&m_y_end,"m_y_end/F");
+    m_SCTHit_tree->Branch("m_z_end",&m_z_end,"m_z_end/F");
+    m_SCTHit_tree->Branch("m_station",&m_station,"m_station/F");
+    m_SCTHit_tree->Branch("m_plane",&m_plane,"m_plane/F");
+    m_SCTHit_tree->Branch("m_getModule",&m_getModule,"m_getModule/F");
+    m_SCTHit_tree->Branch("m_sensor",&m_sensor,"m_sensor/F");
+    m_SCTHit_tree->Branch("m_trackNumber",&m_trackNumber,"m_trackNumber/F");
 
     // initialize data handle keys
     ATH_CHECK( m_mcEventKey.initialize() );
@@ -120,6 +133,23 @@ StatusCode RDOReadAlg::execute()
                     && hit.trackNumber() == barcode)
                 {
                     ATH_MSG_INFO("matched particle and plotting w/ barcode "<<barcode);
+                    m_x_start = hit.localStartPosition().x();
+                    m_y_start = hit.localStartPosition().y();	      
+                    m_z_start = hit.localStartPosition().z();	
+                    
+                    m_x_end = hit.localEndPosition().x();
+                    m_y_end = hit.localEndPosition().y();
+                    m_z_end = hit.localEndPosition().z();
+                    
+                    m_station = hit.getStation();
+                    m_plane = hit.getPlane();
+                    m_row = hit.getRow();
+                    m_getModule = hit.getModule();
+                    m_sensor = hit.getSensor();
+                    m_trackNumber = hit.trackNumber();
+                        
+                    m_SCTHit_tree->Fill();
+
                     //here we plot point of angle vs countsize!
                     float delx = hit.localEndPosition().x() - hit.localStartPosition().x();
                     float dely = hit.localEndPosition().y() - hit.localStartPosition().y();
@@ -138,7 +168,8 @@ StatusCode RDOReadAlg::execute()
             }
         }
     }
-
+    m_SCTHit_tree->Write();  
+    
     return StatusCode::SUCCESS;
 }
 
