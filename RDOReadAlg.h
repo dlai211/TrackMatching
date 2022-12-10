@@ -35,12 +35,12 @@ class RDOReadAlg : public AthHistogramAlgorithm
     float m_y_end;
     float m_z_end;
     
-    float m_station;
-    float m_plane;
-    float m_row;
-    float m_getModule;
-    float m_sensor;
-    float m_trackNumber;
+    //float m_station;
+    //float m_plane;
+    //float m_row;
+    //float m_getModule;
+    //float m_sensor;
+    //float m_trackNumber;
 
 
     // Read handle keys for data containers
