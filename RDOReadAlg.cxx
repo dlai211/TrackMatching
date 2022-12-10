@@ -30,6 +30,7 @@ StatusCode RDOReadAlg::initialize()
     m_SCTHit_tree->Branch("m_z_end",&m_z_end,"m_z_end/F");
     m_SCTHit_tree->Branch("m_station",&m_station,"m_station/F");
     m_SCTHit_tree->Branch("m_plane",&m_plane,"m_plane/F");
+    m_SCTHit_tree->Branch("m_row",&m_row,"m_row/F");
     m_SCTHit_tree->Branch("m_getModule",&m_getModule,"m_getModule/F");
     m_SCTHit_tree->Branch("m_sensor",&m_sensor,"m_sensor/F");
     m_SCTHit_tree->Branch("m_trackNumber",&m_trackNumber,"m_trackNumber/F");
