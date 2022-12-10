@@ -21,6 +21,7 @@ StatusCode RDOReadAlg::initialize()
     ATH_CHECK(histSvc()->regHist("/HIST/myhistAngl", m_incAnglHist));
     
     // TTree
+    m_SCTHit_tree = new TTree("m_SCTHit_tree","Tree");
     m_SCTHit_tree->Branch("m_x_start",&m_x_start,"m_x_start/F");
     m_SCTHit_tree->Branch("m_y_start",&m_y_start,"m_y_start/F");
     m_SCTHit_tree->Branch("m_z_start",&m_z_start,"m_z_start/F");
