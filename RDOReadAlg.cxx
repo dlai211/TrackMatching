@@ -23,11 +23,11 @@ StatusCode RDOReadAlg::initialize()
     // TTree
     m_SCTHit_tree = new TTree("m_SCTHit_tree","Tree");
     m_SCTHit_tree->Branch("m_x_start",&m_x_start,"m_x_start/F");
-    m_SCTHit_tree->Branch("m_y_start",&m_y_start,"m_y_start/F");
-    m_SCTHit_tree->Branch("m_z_start",&m_z_start,"m_z_start/F");
-    m_SCTHit_tree->Branch("m_x_end",&m_x_end,"m_x_end/F");
-    m_SCTHit_tree->Branch("m_y_end",&m_y_end,"m_y_end/F");
-    m_SCTHit_tree->Branch("m_z_end",&m_z_end,"m_z_end/F");
+    //m_SCTHit_tree->Branch("m_y_start",&m_y_start,"m_y_start/F");
+    //m_SCTHit_tree->Branch("m_z_start",&m_z_start,"m_z_start/F");
+    //m_SCTHit_tree->Branch("m_x_end",&m_x_end,"m_x_end/F");
+    //m_SCTHit_tree->Branch("m_y_end",&m_y_end,"m_y_end/F");
+    //m_SCTHit_tree->Branch("m_z_end",&m_z_end,"m_z_end/F");
     //m_SCTHit_tree->Branch("m_station",&m_station,"m_station/F");
     //m_SCTHit_tree->Branch("m_plane",&m_plane,"m_plane/F");
     //m_SCTHit_tree->Branch("m_row",&m_row,"m_row/F");
@@ -125,7 +125,8 @@ StatusCode RDOReadAlg::execute()
             ATH_MSG_INFO("trying to match hit to stat/plane/row/mod/sens: "<<station<<" "<<plane<<" "<<row<<" "<<module<<" "<<sensor);
             for (const FaserSiHit& hit : *h_siHits)
             {
-//                ATH_MSG_INFO("hit w/vals "<<hit.getStation()<<" "<<hit.getPlane()<<" "<<hit.getRow()<<" "<<hit.getModule()<<" "<<hit.getSensor()<<" barcode: "<<hit.trackNumber());
+//              m_x_start = hit.localStartPosition().x();
+                ATH_MSG_INFO("hit w/vals "<<hit.getStation()<<" "<<hit.getPlane()<<" "<<hit.getRow()<<" "<<hit.getModule()<<" "<<hit.getSensor()<<" barcode: "<<hit.trackNumber());
                 //set of conditions to confirm looking at same particle in same place for SiHit as RDO
                 if(hit.getStation() == station 
                     && hit.getPlane() == plane
@@ -136,12 +137,12 @@ StatusCode RDOReadAlg::execute()
                 {
                     ATH_MSG_INFO("matched particle and plotting w/ barcode "<<barcode);
                     m_x_start = hit.localStartPosition().x();
-                    m_y_start = hit.localStartPosition().y();	      
-                    m_z_start = hit.localStartPosition().z();	
+                    //m_y_start = hit.localStartPosition().y();	      
+                    //m_z_start = hit.localStartPosition().z();	
                     
-                    m_x_end = hit.localEndPosition().x();
-                    m_y_end = hit.localEndPosition().y();
-                    m_z_end = hit.localEndPosition().z();
+                    //m_x_end = hit.localEndPosition().x();
+                    //m_y_end = hit.localEndPosition().y();
+                    //m_z_end = hit.localEndPosition().z();
                     
                     //m_station = hit.getStation();
                     //m_plane = hit.getPlane();
