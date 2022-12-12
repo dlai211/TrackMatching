@@ -28,12 +28,12 @@ class RDOReadAlg : public AthHistogramAlgorithm
     TTree* m_SCTHit_tree;
     
     float m_x_start;
-    float m_y_start;
-    float m_z_start;
+    //float m_y_start;
+    //float m_z_start;
 
-    float m_x_end;
-    float m_y_end;
-    float m_z_end;
+    //float m_x_end;
+    //float m_y_end;
+    //float m_z_end;
     
     //float m_station;
     //float m_plane;
