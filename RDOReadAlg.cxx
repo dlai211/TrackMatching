@@ -125,8 +125,8 @@ StatusCode RDOReadAlg::execute()
             ATH_MSG_INFO("trying to match hit to stat/plane/row/mod/sens: "<<station<<" "<<plane<<" "<<row<<" "<<module<<" "<<sensor);
             for (const FaserSiHit& hit : *h_siHits)
             {
-//              m_x_start = hit.localStartPosition().x();
-                ATH_MSG_INFO("hit w/vals "<<hit.getStation()<<" "<<hit.getPlane()<<" "<<hit.getRow()<<" "<<hit.getModule()<<" "<<hit.getSensor()<<" barcode: "<<hit.trackNumber());
+                m_x_start = hit.localStartPosition().x();
+                //ATH_MSG_INFO("hit w/vals "<<hit.getStation()<<" "<<hit.getPlane()<<" "<<hit.getRow()<<" "<<hit.getModule()<<" "<<hit.getSensor()<<" barcode: "<<hit.trackNumber());
                 //set of conditions to confirm looking at same particle in same place for SiHit as RDO
                 if(hit.getStation() == station 
                     && hit.getPlane() == plane
