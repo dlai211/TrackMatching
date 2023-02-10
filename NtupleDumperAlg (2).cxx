@@ -201,6 +201,7 @@ StatusCode NtupleDumperAlg::initialize()
   m_tree->Branch("longTracks", &m_longTracks, "longTracks/I");
   m_tree->Branch("Track_Chi2", &m_Chi2);
   m_tree->Branch("Track_nDoF", &m_DoF);
+  m_tree->Branch("Track_resx", &m_resx);
   m_tree->Branch("Track_x0", &m_xup);
   m_tree->Branch("Track_y0", &m_yup);
   m_tree->Branch("Track_z0", &m_zup);
@@ -532,7 +533,7 @@ StatusCode NtupleDumperAlg::execute(const EventContext &ctx) const
       //ATH_MSG_WARNING("Monte carlo event with no weighting scheme specified.  Setting crossSection (weight) to " << m_baseEventCrossSection << " fb.");
         m_crossSection = m_baseEventCrossSection;
     }
-
+    
     // Find the M d0 and d1 truth information 
     SG::ReadHandle<xAOD::TruthParticleContainer> truthParticleContainer { m_truthParticleContainer, ctx };
     if (truthParticleContainer.isValid() && truthParticleContainer->size() > 0)
@@ -755,7 +756,22 @@ StatusCode NtupleDumperAlg::execute(const EventContext &ctx) const
         truthParticleCount[tp->barcode()] = 0;
     }
   }
-
+  
+    //loop over all the measurements and get the residual
+  for (auto tsos : *(track->trackStateOnSurfaces())) {
+    const Trk::TrackParameters* tsos_params = tsos->trackParameters();
+    const Acts::BoundTrackParameters parameter = ATLASTrackParameterToActs(tsos_params);
+    //only use the measurement
+    if(tsos_params!=nullptr&&tsos->type(Trk::TrackStateOnSurface::Measurement)){
+      const Tracker::FaserSCT_ClusterOnTrack* cluster = dynamic_cast<const Tracker::FaserSCT_ClusterOnTrack*>(tsos->measurementOnTrack());
+      if (cluster != nullptr) {
+        ATH_MSG_DEBUG("Track Parameter at the surface "<<tsos_params->parameters());
+	      
+	Amg::Vector3D global_fit(tsos_params->position().x(), tsos_params->position().y() ,tsos_params->position().z());
+	auto local_fit=trans2.inverse()*global_fit;
+	  //fill the positions
+	m_resx.push_back(cluster->localParameters()[Trk::loc1] - local_fit.x());
+	
   // loop over all reconstructed tracks and use only the tracks that have hits in all three tracking stations (excludes IFT)
   // store track parameters at most upstream measurement and at most downstream measurement
   // extrapolate track to all scintillator positions and store extrapolated position and angle
@@ -1122,7 +1138,8 @@ NtupleDumperAlg::clearTree() const
   m_trackseg_px.clear();
   m_trackseg_py.clear();
   m_trackseg_pz.clear();
-
+  
+  m_resx.clear();
   m_xup.clear();
   m_yup.clear();
   m_zup.clear();
